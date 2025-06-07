@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xboard", "Xboard\Xboard.csproj", "{5A2E8254-44F0-4DB9-A7F0-A8A67B05B773}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xboard.Xunit", "Xboard.Xunit\Xboard.Xunit.csproj", "{5A2E8254-44F0-4DB9-A7F0-A8A67B05B773}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
