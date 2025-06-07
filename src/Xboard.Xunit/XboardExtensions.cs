@@ -5,7 +5,7 @@ using Xunit.Sdk;
 
 namespace Xboard;
 
-internal static class XboardTestExtensions
+internal static class XboardExtensions
 {     
     public static string ComputeMD5(this string value) => BitConverter.ToString(MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(value))).Replace("-", "").ToLower();
     public static void WriteMessage(this IMessageSink messageSink, string message) => messageSink.OnMessage(new DiagnosticMessage(message));

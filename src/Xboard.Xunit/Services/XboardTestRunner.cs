@@ -72,7 +72,7 @@ internal class XboardTestRunner
             Hash = _runHash,
         };
 
-        var startupAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => a.GetCustomAttribute<XboardTestStartupAttribute>() != null).ToArray();
+        var startupAssemblies = AppDomain.CurrentDomain.GetAssemblies().Where(a => a.GetCustomAttribute<XboardStartupAttribute>() != null).ToArray();
 
         foreach (var assembly in startupAssemblies)
             Startup(assembly, messageSink);
@@ -97,7 +97,7 @@ internal class XboardTestRunner
     {
         try
         {
-            var startup = assembly.GetCustomAttribute<XboardTestStartupAttribute>();
+            var startup = assembly.GetCustomAttribute<XboardStartupAttribute>();
             Type type = assembly.GetType(startup.ClassName);
 
             if (type != null)
