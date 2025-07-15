@@ -82,7 +82,7 @@ internal class XboardTestRunner
 
         var elasticClient = new ElasticClient(connectionSettings
             .DefaultMappingFor<XboardTestRun>(m => m
-                .IndexName($"xobard-testruns-{DateTime.UtcNow:yyyy-MM}"))
+                .IndexName($"xboard-testruns-{DateTime.UtcNow:yyyy-MM}"))
             .MaxRetryTimeout(TimeSpan.FromMinutes(5))
             .EnableApiVersioningHeader()
             .MaximumRetries(3));
