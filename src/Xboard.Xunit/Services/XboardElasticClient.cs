@@ -2,33 +2,32 @@
 using Xunit.Abstractions;
 
 
-namespace Xboard.Services
+namespace Xboard.Services;
+
+internal class XboardElasticClient 
 {
-    internal class XboardElasticClient 
+    private readonly IElasticClient _elasticClient;
+    private readonly IMessageSink _messageSink;
+
+    public XboardElasticClient(IElasticClient elasticClient, IMessageSink messageSink)
     {
-        private readonly IElasticClient _elasticClient;
-        private readonly IMessageSink _messageSink;
-
-        public XboardElasticClient(IElasticClient elasticClient, IMessageSink messageSink)
+        _elasticClient = elasticClient;
+        _messageSink = messageSink;
+    }
+    public async Task IndexDocumentAsync<T>(T document) where T: class
+    {
+        try
         {
-            _elasticClient = elasticClient;
-            _messageSink = messageSink;
+            var result = await _elasticClient.IndexDocumentAsync(document);
+
+            if (!result.IsValid)
+            {
+                _messageSink.WriteMessage(result.DebugInformation);
+            }
         }
-        public async Task IndexDocumentAsync<T>(T document) where T: class
+        catch (Exception ex)
         {
-            try
-            {
-                var result = await _elasticClient.IndexDocumentAsync(document);
-
-                if (!result.IsValid)
-                {
-                    _messageSink.WriteMessage(result.DebugInformation);
-                }
-            }
-            catch (Exception ex)
-            {
-                _messageSink.WriteException(ex);
-            }
+            _messageSink.WriteException(ex);
         }
     }
 }
